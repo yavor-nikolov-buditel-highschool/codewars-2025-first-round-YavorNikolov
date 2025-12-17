@@ -1,0 +1,138 @@
+/* TASK LIST */
+.task-list li {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    font-size: .85rem;
+    margin-bottom: .4rem;
+}
+
+/* SWITCHES */
+.switch-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .75rem;
+}
+
+.switch {
+    padding: .5rem;
+    border: 1px solid rgba(239,68,68,.4);
+    color: #f87171;
+    text-align: center;
+    font-size: .75rem;
+    cursor: pointer;
+}
+
+.switch.on {
+    border-color: rgba(34,211,238,.5);
+    color: #67e8f9;
+    box-shadow: 0 0 10px rgba(34,211,238,.4);
+}
+
+/* STATUS BARS */
+.status {
+    font-size: .75rem;
+    margin-bottom: .75rem;
+}
+
+.bar {
+    background: #020617;
+    height: 6px;
+    margin-top: .3rem;
+}
+
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #22d3ee, #4ade80);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    50% { opacity: 1; }
+}
+
+/* RADAR */
+.radar {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+    border: 1px solid rgba(34,211,238,.4);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.radar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(from 0deg, rgba(34,211,238,.4), transparent);
+    animation: sweep 3s linear infinite;
+}
+
+@keyframes sweep {
+    to { transform: rotate(360deg); }
+}
+
+.blip {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #22d3ee;
+    border-radius: 50%;
+    animation: blip 3s infinite;
+}
+
+@keyframes blip {
+    0%,100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+.blip {
+    box-shadow: 0 0 10px rgba(34,211,238,.8);
+}
+
+.blip.delay {
+    animation-delay: 1s;
+}
+
+.blip.slow {
+    animation-duration: 5s;
+}
+/* LIVE STATUS VALUE */
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: .75rem;
+    letter-spacing: .1em;
+}
+
+/* Smooth bar motion */
+.bar-fill {
+    transition: width 1s ease-in-out;
+}
+/* LIVE LOG */
+.live-log {
+    font-size: .75rem;
+    line-height: 1.4;
+    max-height: 140px;
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, black 70%, transparent);
+}
+
+.log-line {
+    opacity: 0;
+    animation: logFadeIn .6s forwards;
+}
+
+.log-line.warn {
+    color: #fbbf24;
+}
+
+.log-line.critical {
+    color: #f87171;
+    text-shadow: 0 0 8px rgba(248,113,113,.6);
+}
+
+@keyframes logFadeIn {
+    to { opacity: 1; }
+}

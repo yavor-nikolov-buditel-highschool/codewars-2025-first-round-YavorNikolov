@@ -1,0 +1,379 @@
+body {
+    font-family: ui-monospace, monospace;
+}
+
+/* STARFIELD */
+.stars {
+    position: fixed;
+    inset: -50%;
+    background:
+            radial-gradient(1px 1px at 10% 20%, #67e8f9, transparent),
+            radial-gradient(2px 2px at 50% 40%, #22d3ee, transparent),
+            radial-gradient(1px 1px at 70% 60%, #67e8f9, transparent);
+    background-size: 250px 250px;
+    animation: starDrift 140s linear infinite;
+    z-index: -3;
+}
+
+@keyframes starDrift {
+    to { transform: translateY(-1200px); }
+}
+
+/* PANELS */
+.panel {
+    background: rgba(15,23,42,.7);
+    border: 1px solid rgba(34,211,238,.3);
+    padding: 1.5rem;
+    border-radius: 14px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 0 30px rgba(34,211,238,.15);
+}
+
+.panel-title {
+    color: #67e8f9;
+    font-size: .75rem;
+    letter-spacing: .25em;
+    margin-bottom: 1rem;
+}
+
+/* METRICS */
+.metric {
+    display: flex;
+    justify-content: space-between;
+}
+
+.metric strong {
+    font-size: 1.7rem;
+    color: #67e8f9;
+}
+
+.metric.alert strong {
+    color: #fbbf24;
+    animation: blink 1.4s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: .4; }
+}
+
+/* TELEMETRY */
+.telemetry {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+    background: radial-gradient(circle at center, rgba(34,211,238,.18), transparent 70%);
+}
+
+.signal path {
+    fill: none;
+    stroke: #67e8f9;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 10px rgba(34,211,238,.9));
+}
+
+/* FULL WIDTH BARS */
+.full-bars {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+.full-bars .bar {
+    flex: 1;
+    background: linear-gradient(to top, rgba(34,211,238,.7), transparent);
+    transition: height .2s ease-out;
+}
+
+/* RADAR */
+.coord-radar {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    background:
+            linear-gradient(rgba(34,211,238,.2) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34,211,238,.2) 1px, transparent 1px);
+    background-size: 30px 30px;
+    border: 1px solid rgba(34,211,238,.4);
+    overflow: hidden;
+}
+
+.coord-radar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+            linear-gradient(to right, transparent 49.5%, rgba(34,211,238,.6) 50%, transparent 50.5%),
+            linear-gradient(to bottom, transparent 49.5%, rgba(34,211,238,.6) 50%, transparent 50.5%);
+    pointer-events: none;
+}
+
+.coord-radar::after {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+            from 0deg,
+            rgba(34,211,238,.25),
+            transparent 45%
+    );
+    animation: radarSweep 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes radarSweep {
+    to { transform: rotate(360deg); }
+}
+
+/* MOVING CONTACTS */
+.dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #22d3ee;
+    border-radius: 50%;
+    box-shadow: 0 0 14px rgba(34,211,238,.95);
+}
+/* DANGER ZONE */
+.coord-radar .danger-ring {
+    position: absolute;
+    inset: 90px;
+    border: 1px dashed rgba(239,68,68,.5);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* OBJECT TYPES */
+.dot.asteroid {
+    width: 8px;
+    height: 8px;
+    background: #22d3ee;
+}
+
+.dot.meteor {
+    width: 5px;
+    height: 5px;
+    background: #a78bfa;
+    box-shadow: 0 0 12px #a78bfa;
+}
+
+.dot.dust {
+    width: 3px;
+    height: 3px;
+    background: rgba(103,232,249,.6);
+    box-shadow: none;
+}
+
+.dot.unknown {
+    width: 6px;
+    height: 6px;
+    background: #fbbf24;
+    box-shadow: 0 0 12px #fbbf24;
+}
+
+/* THREAT */
+.dot.danger {
+    background: #ef4444 !important;
+    box-shadow: 0 0 16px #ef4444;
+}
+
+
+/* =======================
+   SYSTEM LOG — TERMINAL STYLE
+======================= */
+
+.log-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.log {
+    flex: 1; /* CRITICAL FIX */
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.75rem;
+    line-height: 1.7;
+
+    overflow-y: auto;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+
+    background: linear-gradient(
+            180deg,
+            rgba(2,6,23,.6),
+            rgba(2,6,23,.85)
+    );
+
+    position: relative;
+}
+
+.log p {
+    margin: 0;
+    padding: 0.15rem 0;
+    white-space: nowrap;
+    text-shadow: 0 0 6px rgba(103,232,249,.4);
+}
+
+/* Subtle scanline effect */
+.log::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,.03),
+            rgba(255,255,255,.03) 1px,
+            transparent 1px,
+            transparent 3px
+    );
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+/* Individual log entries */
+.log p {
+    white-space: nowrap;
+    text-shadow: 0 0 6px rgba(103,232,249,.4);
+}
+
+/* New entries glow briefly */
+.log p:first-child {
+    animation: logFlash 0.6s ease-out;
+}
+
+@keyframes logFlash {
+    from {
+        opacity: 0;
+        transform: translateX(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Scrollbar styling (terminal feel) */
+.log::-webkit-scrollbar {
+    width: 6px;
+}
+
+.log::-webkit-scrollbar-thumb {
+    background: rgba(34,211,238,.4);
+    border-radius: 4px;
+}
+
+.log::-webkit-scrollbar-track {
+    background: transparent;
+}
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: #67e8f9;
+    margin-left: 4px;
+    animation: blinkCursor 1s steps(2) infinite;
+}
+
+@keyframes blinkCursor {
+    50% { opacity: 0; }
+}
+
+
+/* VELOCITY PANEL */
+.velocity-panel {
+    height: 320px;
+    width: 100%;
+    background:
+            linear-gradient(rgba(34,211,238,.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34,211,238,.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+    overflow: hidden;
+}
+
+.velocity-graph path {
+    fill: none;
+    stroke-width: 3;
+    stroke: #4ade80;
+    filter: drop-shadow(0 0 14px rgba(74,222,128,.9));
+}
+/* RADAR + LEGEND LAYOUT */
+.radar-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+/* LEGEND PANEL */
+.radar-legend {
+    width: 260px;
+    font-size: .7rem;
+    color: #cbd5f5;
+}
+
+.radar-legend h3 {
+    color: #67e8f9;
+    letter-spacing: .25em;
+    font-size: .65rem;
+    margin-bottom: 1rem;
+}
+
+/* LEGEND ITEMS */
+.legend-item {
+    display: flex;
+    gap: .75rem;
+    margin-bottom: .9rem;
+    align-items: flex-start;
+}
+
+.legend-item strong {
+    display: block;
+    color: #e5e7eb;
+    font-size: .7rem;
+}
+
+.legend-item p {
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+/* LEGEND DOTS */
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 4px;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.legend-dot.asteroid { background: #22d3ee; color: #22d3ee; }
+.legend-dot.meteor   { background: #a78bfa; color: #a78bfa; }
+.legend-dot.dust     { background: rgba(103,232,249,.6); color: #67e8f9; }
+.legend-dot.unknown  { background: #fbbf24; color: #fbbf24; }
+.legend-dot.danger   { background: #ef4444; color: #ef4444; }
+
+/* EMPHASIZE THREAT */
+.legend-item.danger strong {
+    color: #fecaca;
+}
+/* Prevent panels from stretching to equal height */
+.grid {
+    align-items: start;
+}
+/* Lock radar + log panels to equal height */
+.panel.sync-height {
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+}
+/* Radar content should scroll internally if needed */
+.radar-layout {
+    flex: 1;
+    overflow: hidden;
+    align-items: flex-start;
+}
+.radar-legend {
+    max-height: 100%;
+    overflow-y: auto;
+    padding-right: 6px;
+}

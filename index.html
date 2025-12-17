@@ -1,13 +1,128 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/src/style.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>ISS PARADOX — Command Deck</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="src/css/base.css">
+  <link rel="stylesheet" href="src/css/index.css">
 </head>
-<body>
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
+
+<body class="bg-black text-gray-300 overflow-x-hidden">
+
+<!-- STARFIELD -->
+<div class="stars"></div>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen" class="fixed inset-0 bg-black flex items-center justify-center z-50">
+  <pre id="terminal" class="text-green-400 font-mono text-sm md:text-base"></pre>
+</div>
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full bg-black/70 backdrop-blur border-b border-cyan-500/20 z-40">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <span class="font-mono text-cyan-400 tracking-widest">ISS • PARADOX</span>
+    <div class="space-x-6 text-sm font-mono">
+      <a href="index.html" class="hover:text-cyan-400">COMMAND</a>
+      <a href="status.html" class="hover:text-cyan-400">STATUS</a>
+      <a href="crew.html" class="hover:text-cyan-400">CREW</a>
+    </div>
+  </div>
+</nav>
+
+<!-- COMMAND DECK -->
+<section class="pt-28 px-6 max-w-[1600px] mx-auto grid grid-cols-1 xl:grid-cols-3 gap-6 pb-24">
+
+  <!-- LEFT COLUMN -->
+  <div class="space-y-6">
+
+    <div class="panel">
+      <h2 class="panel-title">MISSION DIRECTIVES</h2>
+      <ul class="task-list">
+        <li><input type="checkbox" checked> Stabilize quantum drift</li>
+        <li><input type="checkbox" checked> Maintain oxygen equilibrium</li>
+        <li><input type="checkbox"> Investigate anomaly Δ-882</li>
+        <li><input type="checkbox"> Reassure crew (optional)</li>
+        <li><input type="checkbox"> Question reality</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-title">SYSTEM TOGGLES</h2>
+      <div class="switch-grid">
+        <div class="switch on">NAV CORE</div>
+        <div class="switch on">LIFE SUPPORT</div>
+        <div class="switch">GRAVITY</div>
+        <div class="switch on">AI OVERSIGHT</div>
+        <div class="switch">CAUSALITY LOCK</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CENTER COLUMN -->
+  <div class="space-y-6">
+
+    <div class="panel text-center">
+      <h1 class="text-4xl md:text-5xl font-mono text-cyan-400 glow">
+        ISS PARADOX
+      </h1>
+      <p class="mt-4 text-gray-400">
+        A deep-space research vessel observing the universe
+        until it either makes sense or admits defeat.
+      </p>
+      <p class="mt-2 text-amber-400 text-sm font-mono">
+        CURRENT DIRECTIVE: CONTINUE EXISTING
+      </p>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-title">LOCAL SPACE RADAR</h2>
+      <div class="radar">
+        <span class="blip"></span>
+        <span class="blip delay"></span>
+        <span class="blip slow"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="space-y-6">
+
+    <div class="panel">
+      <h2 class="panel-title">SYSTEM STATUS</h2>
+
+      <div class="status">
+        POWER CORE
+        <div class="bar"><div class="bar-fill w-[92%]"></div></div>
+      </div>
+
+      <div class="status">
+        OXYGEN
+        <div class="bar"><div class="bar-fill w-[84%]"></div></div>
+      </div>
+
+      <div class="status">
+        SHIELDS
+        <div class="bar"><div class="bar-fill w-[73%]"></div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-title">ANOMALY LOG</h2>
+      <div class="live-log" id="commandLog"></div>
+      </p>
+    </div>
+
+  </div>
+  <span class="cursor"></span>
+
+</section>
+
+<script src="src/js/index.js"></script>
+
 </body>
 </html>

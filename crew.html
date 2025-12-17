@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ISS PARADOX — Crew Manifest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="src/css/base.css">
+    <link rel="stylesheet" href="src/css/crew.css">
+</head>
+
+<body class="bg-black text-gray-300 overflow-x-hidden">
+<div class="stars"></div>
+
+<nav>
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <h1 class="text-3xl font-mono text-cyan-400 glow">
+            ACTIVE CREW MANIFEST
+        </h1>
+
+        <a href="index.html" class="btn">
+            ← RETURN TO COMMAND
+        </a>
+    </div>
+</nav>
+
+<section class="pt-32 px-6 max-w-7xl mx-auto">
+    <p class="text-sm text-gray-400 mb-10">
+        Live biological, cognitive, and existential analysis of onboard personnel.
+    </p>
+
+    <div class="crew-grid">
+
+        <!-- MEMBER 1 -->
+        <div class="panel crew-card" data-member>
+            <img src="src/assets/mem1.jpg" class="crew-img">
+
+            <h3>
+                <a href="crew-member.html?id=elara" class="crew-link">
+                    DR. ELARA VOSS
+                </a>
+            </h3>
+
+            <span class="role">Quantum Navigator</span>
+            <p class="quote">“The ship whispers shortcuts.”</p>
+
+            <div class="stat">
+                <label>Cognitive</label>
+                <div class="bar"><span data-type="cog"></span></div>
+            </div>
+
+            <div class="stat">
+                <label>Physical</label>
+                <div class="bar"><span data-type="phys"></span></div>
+            </div>
+
+            <div class="stat">
+                <label>Oxygen</label>
+                <div class="bar oxygen"><span data-type="oxy"></span></div>
+            </div>
+        </div>
+
+        <!-- MEMBER 2 -->
+        <div class="panel crew-card" data-member>
+            <img src="src/assets/mem2.jpg" class="crew-img">
+
+            <h3>
+                <a href="crew-member.html?id=jax" class="crew-link">
+                    COMMANDER JAX CALDER
+                </a>
+            </h3>
+
+            <span class="role">Command Officer</span>
+            <p class="quote">“Calm is a tactical advantage.”</p>
+
+            <div class="stat"><label>Cognitive</label><div class="bar"><span data-type="cog"></span></div></div>
+            <div class="stat"><label>Physical</label><div class="bar"><span data-type="phys"></span></div></div>
+            <div class="stat"><label>Oxygen</label><div class="bar oxygen"><span data-type="oxy"></span></div></div>
+        </div>
+
+        <!-- MEMBER 3 -->
+        <div class="panel crew-card" data-member>
+            <img src="src/assets/mem5.jpg" class="crew-img">
+
+            <h3>
+                <a href="crew-member.html?id=mira" class="crew-link">
+                    LT. MIRA KADE
+                </a>
+            </h3>
+
+            <span class="role">Engineering Lead</span>
+            <p class="quote">“It only explodes once.”</p>
+
+            <div class="stat"><label>Cognitive</label><div class="bar"><span data-type="cog"></span></div></div>
+            <div class="stat"><label>Physical</label><div class="bar"><span data-type="phys"></span></div></div>
+            <div class="stat"><label>Oxygen</label><div class="bar oxygen"><span data-type="oxy"></span></div></div>
+        </div>
+
+        <!-- MEMBER 4 -->
+        <div class="panel crew-card" data-member>
+            <img src="src/assets/mem3.jpg" class="crew-img">
+
+            <h3>
+                <a href="crew-member.html?id=theo" class="crew-link">
+                    ENSIGN THEO RYN
+                </a>
+            </h3>
+
+            <span class="role">Recon Specialist</span>
+            <p class="quote">“I was never there.”</p>
+
+            <div class="stat"><label>Cognitive</label><div class="bar"><span data-type="cog"></span></div></div>
+            <div class="stat"><label>Physical</label><div class="bar"><span data-type="phys"></span></div></div>
+            <div class="stat"><label>Oxygen</label><div class="bar oxygen"><span data-type="oxy"></span></div></div>
+        </div>
+
+        <!-- MEMBER 5 — AI -->
+        <div class="panel crew-card" data-member data-ai="true">
+            <img src="src/assets/mem4.jpg" class="crew-img">
+
+            <h3>
+                <a href="crew-member.html?id=iris" class="crew-link">
+                    IA-7 “IRIS”
+                </a>
+            </h3>
+
+            <span class="role">Sentient Ship AI</span>
+            <p class="quote">“I am not worried. Should I be?”</p>
+
+            <div class="stat"><label>Cognitive</label><div class="bar"><span data-type="cog"></span></div></div>
+            <div class="stat"><label>Physical</label><div class="bar"><span data-type="phys"></span></div></div>
+            <div class="stat"><label>Oxygen</label><div class="bar oxygen"><span data-type="oxy"></span></div></div>
+        </div>
+
+    </div>
+</section>
+
+<script src="src/js/crew.js"></script>
+</body>
+</html>

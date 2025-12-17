@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>ISS PARADOX — Crew Diagnostics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="src/css/base.css">
+    <link rel="stylesheet" href="src/css/crew-member.css">
+</head>
+
+<body class="bg-black text-gray-300 overflow-x-hidden">
+
+<div class="stars"></div>
+
+<section class="pt-28 px-6 max-w-[1600px] mx-auto pb-24">
+
+    <!-- HEADER -->
+    <div class="flex items-center justify-between mb-8">
+        <h1 id="memberTitle" class="text-3xl font-mono text-cyan-400 tracking-widest"></h1>
+        <a href="crew.html" class="btn">← RETURN TO CREW</a>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="grid xl:grid-cols-[420px_1fr] gap-8">
+
+        <!-- PORTRAIT -->
+        <div class="panel portrait-panel">
+            <img id="portrait" />
+        </div>
+
+        <!-- DATA -->
+        <div class="panel data-panel">
+
+            <!-- STORY -->
+            <div class="story-panel" id="story"></div>
+
+            <!-- BIOMETRICS -->
+            <div class="grid md:grid-cols-2 gap-6 mt-6">
+
+                <!-- HEART -->
+                <div class="panel metric">
+                    <span>HEART RATE</span>
+                    <strong>
+                        <span id="heartRate"></span>
+                        <span class="heart" id="heartIcon">♥</span>
+                    </strong>
+                </div>
+
+                <!-- BATTERY -->
+                <div class="panel">
+                    <span class="metric-label">BATTERY</span>
+                    <div class="bar"><span id="batteryBar"></span></div>
+                </div>
+
+                <!-- OXYGEN -->
+                <div class="panel">
+                    <span class="metric-label">O₂ SATURATION</span>
+                    <div class="bar oxygen"><span id="oxygenBar"></span></div>
+                </div>
+
+                <!-- PRESSURE -->
+                <div class="panel">
+                    <span class="metric-label">BLOOD PRESSURE</span>
+                    <div class="bar pressure"><span id="pressureBar"></span></div>
+                </div>
+
+            </div>
+
+            <!-- UNIQUE TRAIT -->
+            <div class="panel mt-6">
+                <h2 id="traitLabel" class="panel-title"></h2>
+                <svg class="trait-graph" viewBox="0 0 1200 240" preserveAspectRatio="none">
+                    <path id="traitPath" />
+                </svg>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<script type="module" src="src/js/crew-member.js"></script>
+</body>
+</html>

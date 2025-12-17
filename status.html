@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>ISS PARADOX — Ship Status</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="src/css/base.css">
+    <link rel="stylesheet" href="src/css/status.css">
+</head>
+
+<body class="bg-black text-gray-300 overflow-x-hidden">
+
+<div class="stars"></div>
+
+<section class="pt-28 px-6 max-w-[1600px] mx-auto space-y-10 pb-24">
+
+    <!-- HEADER -->
+    <div class="flex items-center justify-between">
+        <h1 class="text-4xl font-mono text-cyan-400">
+            SHIP SYSTEMS — DEEP STATUS
+        </h1>
+
+        <a href="index.html" class="btn">
+            ← RETURN TO COMMAND
+        </a>
+    </div>
+
+    <!-- METRICS -->
+    <div class="grid md:grid-cols-3 gap-6">
+        <div class="panel metric">
+            <span>POWER CORE</span>
+            <strong id="powerVal">92%</strong>
+        </div>
+        <div class="panel metric">
+            <span>OXYGEN</span>
+            <strong id="oxygenVal">84%</strong>
+        </div>
+        <div class="panel metric alert">
+            <span>SHIELD STRESS</span>
+            <strong id="shieldVal">76%</strong>
+        </div>
+    </div>
+
+    <!-- REAL-TIME FLUCTUATION -->
+    <div class="panel">
+        <h2 class="panel-title">REAL-TIME SYSTEM FLUCTUATION</h2>
+
+        <div class="telemetry">
+            <svg class="signal" viewBox="0 0 1000 200" preserveAspectRatio="none">
+                <path id="signalPath" />
+            </svg>
+
+            <div class="full-bars"></div>
+        </div>
+    </div>
+
+    <!-- RADAR + LOG -->
+    <div class="grid xl:grid-cols-2 gap-6">
+
+        <!-- RADAR + LEGEND -->
+        <div class="panel sync-height">
+            <h2 class="panel-title">LOCAL SPACE COORDINATES</h2>
+
+            <div class="radar-layout">
+                <div class="coord-radar">
+                    <div class="danger-ring"></div>
+                </div>
+
+                <div class="radar-legend">
+                    <h3>SENSOR SIGNATURE LEGEND</h3>
+
+                    <div class="legend-item">
+                        <span class="legend-dot asteroid"></span>
+                        <div>
+                            <strong>ASTEROID MASS</strong>
+                            <p>High-density bodies. Stable trajectory. Collision capable.</p>
+                        </div>
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-dot meteor"></span>
+                        <div>
+                            <strong>METEOR VECTOR</strong>
+                            <p>High-velocity debris. Short detection window.</p>
+                        </div>
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-dot dust"></span>
+                        <div>
+                            <strong>PARTICULATE NOISE</strong>
+                            <p>Micro-debris interference. Non-lethal.</p>
+                        </div>
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-dot unknown"></span>
+                        <div>
+                            <strong>UNIDENTIFIED CONTACT</strong>
+                            <p>Erratic movement. Origin undetermined.</p>
+                        </div>
+                    </div>
+
+                    <div class="legend-item danger">
+                        <span class="legend-dot danger"></span>
+                        <div>
+                            <strong>COLLISION THREAT</strong>
+                            <p>Proximity breach. Evasive action advised.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-xs text-gray-400 mt-4">
+                Sensor data extrapolated in real time. Threat states auto-classified.
+            </p>
+        </div>
+
+        <!-- LOG -->
+        <div class="panel sync-height">
+            <h2 class="panel-title">SYSTEM LOG STREAM</h2>
+            <div class="log"></div>
+        </div>
+
+    </div>
+
+    <!-- VELOCITY / EVADE GRAPH -->
+    <div class="panel">
+        <h2 class="panel-title">SUBSPACE VELOCITY VECTOR (EVADE)</h2>
+
+        <div class="velocity-panel">
+            <svg class="velocity-graph" viewBox="0 0 1200 300" preserveAspectRatio="none">
+                <path id="velocityPath" />
+            </svg>
+        </div>
+    </div>
+
+</section>
+
+<script src="src/js/status.js"></script>
+</body>
+</html>

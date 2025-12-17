@@ -1,0 +1,81 @@
+/* PORTRAIT */
+.portrait-panel img {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 0 40px rgba(34,211,238,.35);
+    mask-image: linear-gradient(to bottom, black 85%, transparent);
+}
+
+/* STORY */
+.story-panel {
+    font-size: .85rem;
+    line-height: 1.7;
+    color: #94a3b8;
+}
+
+.story-panel strong {
+    color: #67e8f9;
+    text-shadow: 0 0 10px rgba(34,211,238,.7);
+}
+
+/* METRICS */
+.metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metric strong {
+    font-size: 1.6rem;
+    color: #67e8f9;
+}
+
+.metric-label {
+    font-size: .65rem;
+    letter-spacing: .2em;
+    color: #94a3b8;
+}
+
+/* HEART */
+.heart {
+    color: #ef4444;
+    margin-left: .3rem;
+    display: inline-block;
+    transform-origin: center;
+}
+
+
+/* BARS */
+.bar {
+    background: rgba(2,6,23,.9);
+    height: 7px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: .4rem;
+}
+
+.bar span {
+    display: block;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(90deg, #22d3ee, #4ade80);
+    box-shadow: 0 0 14px rgba(34,211,238,.8);
+    transition: width .8s ease, filter .3s;
+}
+
+.bar.oxygen span {
+    background: linear-gradient(90deg, #67e8f9, #38bdf8);
+}
+
+.bar.pressure span {
+    background: linear-gradient(90deg, #a78bfa, #f472b6);
+}
+
+/* TRAIT GRAPH */
+.trait-graph path {
+    fill: none;
+    stroke: #67e8f9;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 16px rgba(34,211,238,.9));
+}
+
