@@ -110,7 +110,12 @@ All data used in the project is **static, simulated, or a mix of both**, strictl
 
 ## 📸 Screenshots
 
-Screenshots of the interface can be viewed by running the project locally.
+<img width="1920" height="993" alt="image" src="https://github.com/user-attachments/assets/eb1037e3-949e-498d-9056-0bb754845c30" />
+<img width="1165" height="986" alt="image" src="https://github.com/user-attachments/assets/6e35fafa-9aec-4ee4-aa02-fdeb764f0c8f" />
+<img width="1920" height="990" alt="image" src="https://github.com/user-attachments/assets/3f98b82e-c28b-43fa-a0f8-bafd7ff7f99b" />
+<img width="1920" height="995" alt="image" src="https://github.com/user-attachments/assets/77b0f73b-1e17-4102-ae67-b3ec016f39cf" />
+<img width="1920" height="997" alt="image" src="https://github.com/user-attachments/assets/6cecc2d1-a932-4123-be6f-f21f29046315" />
+
 
 ---
 
