@@ -23,13 +23,12 @@ All data is **static or simulated**, designed purely for visual and interactive 
 
 ## 📄 Pages & Structure
 
-The website consists of **8 pages**, implemented as **separate HTML files**:
+The website consists of **8 pages**, implemented as **HTML files**:
 
 - `index.html` – Home / Main Control Panel  
 - `crew.html` – Crew Manifest  
 - `crew-member.html` – Individual Crew Member Profile  
 - `status.html` – Ship Status & Systems  
-- Additional system-focused views integrated through navigation and UI panels  
 
 Navigation is available and visible on all pages.
 
