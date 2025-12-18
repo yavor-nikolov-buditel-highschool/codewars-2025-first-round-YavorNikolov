@@ -193,3 +193,7 @@ setInterval(() => {
 }, 700);
 
 updateRadar();
+sessionStorage.setItem(
+    "returnMessage",
+    "Telemetry stream terminated. System control rerouted."
+);

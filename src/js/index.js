@@ -1,45 +1,119 @@
-// LOADING TERMINAL
+/* =======================
+   LOADING / RETURN SYSTEM
+======================= */
+
 const terminal = document.getElementById("terminal");
+const loadingScreen = document.getElementById("loading-screen");
 
-if (terminal) {
-    const lines = [
-        "Initializing Deep Space Systems...",
-        "Synchronizing Navigation Core...",
-        "Engaging Life Support...",
-        "Calibrating Existential Parameters...",
-        "ISS PARADOX ONLINE."
-    ];
+// Detect navigation source
+const navSource = sessionStorage.getItem("navSource");
 
-    let line = 0, char = 0;
+// First-ever visit
+const hasBooted = sessionStorage.getItem("hasBooted");
 
-    function type() {
-        if (line < lines.length) {
-            if (char < lines[line].length) {
-                terminal.textContent += lines[line][char++];
-                setTimeout(type, 35);
+if (terminal && loadingScreen) {
+    // CASE 1 — FIRST LOAD ONLY
+    if (!hasBooted) {
+        sessionStorage.setItem("hasBooted", "true");
+
+        const lines = [
+            "Initializing Deep Space Systems...",
+            "Synchronizing Navigation Core...",
+            "Engaging Life Support...",
+            "Calibrating Existential Parameters...",
+            "ISS PARADOX ONLINE."
+        ];
+
+        let line = 0, char = 0;
+
+        function type() {
+            if (line < lines.length) {
+                if (char < lines[line].length) {
+                    terminal.textContent += lines[line][char++];
+                    setTimeout(type, 35);
+                } else {
+                    terminal.textContent += "\n";
+                    line++;
+                    char = 0;
+                    setTimeout(type, 300);
+                }
             } else {
-                terminal.textContent += "\n";
-                line++;
-                char = 0;
-                setTimeout(type, 300);
+                setTimeout(() => {
+                    loadingScreen.remove();
+                }, 700);
             }
-        } else {
-            setTimeout(() => {
-                document.getElementById("loading-screen").remove();
-            }, 700);
         }
+
+        type();
     }
 
-    type();
+    // CASE 2 — RETURN FROM OTHER PAGE
+    else if (navSource) {
+        const returnMessages = {
+            crew: [
+                "Disengaging Crew Manifold...",
+                "Severing Neural Presence Links...",
+                "Crew Telemetry Archived.",
+                "Returning to Command Deck..."
+            ],
+            status: [
+                "Detaching Systems Telemetry...",
+                "Collapsing Diagnostic Streams...",
+                "System State Cached.",
+                "Returning to Command Deck..."
+            ]
+        };
+
+        const lines = returnMessages[navSource] || [
+            "Re-establishing Command Context..."
+        ];
+
+        // Clear so it doesn't replay again
+        sessionStorage.removeItem("navSource");
+
+        let line = 0, char = 0;
+
+        function typeReturn() {
+            if (line < lines.length) {
+                if (char < lines[line].length) {
+                    terminal.textContent += lines[line][char++];
+                    setTimeout(typeReturn, 30);
+                } else {
+                    terminal.textContent += "\n";
+                    line++;
+                    char = 0;
+                    setTimeout(typeReturn, 220);
+                }
+            } else {
+                setTimeout(() => {
+                    loadingScreen.remove();
+                }, 500);
+            }
+        }
+
+        typeReturn();
+    }
+
+    // CASE 3 — NORMAL VISIT (NO LOADING)
+    else {
+        loadingScreen.remove();
+    }
 }
 
-// SWITCHES
+/* =======================
+   SWITCHES
+======================= */
+
 document.querySelectorAll(".switch").forEach(sw => {
     sw.addEventListener("click", () => {
         sw.classList.toggle("on");
     });
 });
-// LIVE SYSTEM STATUS (COMMAND PAGE)
+
+/* =======================
+   LIVE SYSTEM STATUS
+======================= */
+
 function liveBarByLabel(labelText, base) {
     const statuses = document.querySelectorAll(".status");
 
@@ -58,7 +132,6 @@ function liveBarByLabel(labelText, base) {
             setInterval(() => {
                 const delta = Math.floor(Math.random() * 5 - 2);
                 current = Math.min(100, Math.max(60, current + delta));
-
                 bar.style.width = `${current}%`;
                 label.textContent = `${current}%`;
             }, 1200);
@@ -70,7 +143,10 @@ liveBarByLabel("POWER", 92);
 liveBarByLabel("OXYGEN", 84);
 liveBarByLabel("SHIELDS", 73);
 
-// COMMAND LOG SYSTEM
+/* =======================
+   COMMAND LOG
+======================= */
+
 const log = document.getElementById("commandLog");
 
 if (log) {
@@ -89,21 +165,15 @@ if (log) {
         const p = document.createElement("p");
         p.className = "log-line";
 
-        // Random severity
         const roll = Math.random();
         if (roll > 0.9) p.classList.add("critical");
         else if (roll > 0.75) p.classList.add("warn");
 
         p.textContent = `> ${messages[Math.floor(Math.random() * messages.length)]}`;
-
         log.appendChild(p);
 
-        // Trim old logs
         if (log.children.length > 12) {
             log.removeChild(log.firstChild);
-        }
-        if (labelText === "SHIELDS" && current < 70) {
-            bar.style.filter = "hue-rotate(30deg)";
         }
 
         log.scrollTop = log.scrollHeight;

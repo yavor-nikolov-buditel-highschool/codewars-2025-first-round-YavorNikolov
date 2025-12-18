@@ -1,4 +1,5 @@
 document.querySelectorAll('[data-member]').forEach((card, index) => {
+
     const isAI = card.dataset.ai === "true";
 
     // Seed variance per card so members feel unique
@@ -68,4 +69,16 @@ document.querySelectorAll('[data-member]').forEach((card, index) => {
     }
 
     update();
+
+    // MARK NAVIGATION SOURCE
+    const returnBtn = document.querySelector('a[href="index.html"]');
+
+    if (returnBtn) {
+        returnBtn.addEventListener("click", () => {
+            sessionStorage.setItem("navSource", "crew");
+        });
+    }
+
+
+
 });
