@@ -11,7 +11,6 @@
 </head>
 
 <body class="bg-black text-gray-300 overflow-x-hidden">
-
 <div class="stars"></div>
 
 <section class="pt-28 px-6 max-w-[1600px] mx-auto pb-24">
@@ -30,16 +29,15 @@
             <img id="portrait" />
         </div>
 
-        <!-- DATA -->
+        <!-- RIGHT COLUMN -->
         <div class="panel data-panel">
 
             <!-- STORY -->
             <div class="story-panel" id="story"></div>
 
-            <!-- BIOMETRICS -->
-            <div class="grid md:grid-cols-2 gap-6 mt-6">
+            <!-- HUMAN BIOMETRICS (HUMANS ONLY) -->
+            <div id="humanMetrics" class="grid md:grid-cols-2 gap-6 mt-6">
 
-                <!-- HEART -->
                 <div class="panel metric">
                     <span>HEART RATE</span>
                     <strong>
@@ -48,35 +46,64 @@
                     </strong>
                 </div>
 
-                <!-- BATTERY -->
                 <div class="panel">
                     <span class="metric-label">BATTERY</span>
                     <div class="bar"><span id="batteryBar"></span></div>
                 </div>
 
-                <!-- OXYGEN -->
                 <div class="panel">
                     <span class="metric-label">O₂ SATURATION</span>
                     <div class="bar oxygen"><span id="oxygenBar"></span></div>
                 </div>
 
-                <!-- PRESSURE -->
                 <div class="panel">
                     <span class="metric-label">BLOOD PRESSURE</span>
                     <div class="bar pressure"><span id="pressureBar"></span></div>
                 </div>
-
             </div>
 
-            <!-- UNIQUE TRAIT -->
-            <div class="panel mt-6">
-                <h2 id="traitLabel" class="panel-title"></h2>
+            <!-- ✅ HUMAN TRAIT (MOVED INSIDE RIGHT COLUMN) -->
+            <div id="humanTrait" class="panel mt-6 hidden">
+                <h2 id="humanTraitLabel" class="panel-title"></h2>
                 <svg class="trait-graph" viewBox="0 0 1200 240" preserveAspectRatio="none">
-                    <path id="traitPath" />
+                    <path id="humanTraitPath"></path>
                 </svg>
             </div>
 
+            <!-- AI SYSTEMS (AI ONLY, UNDER DESCRIPTION) -->
+            <div id="aiSystems" class="space-y-6 mt-6 hidden">
+
+                <div class="panel">
+                    <div class="metric-label">CPU TEMPERATURE</div>
+                    <div class="bar"><span id="cpuBar"></span></div>
+                </div>
+
+                <div class="panel">
+                    <div class="metric-label">MIND-CENTISIZING GRADIENT</div>
+                    <div class="bar pressure"><span id="mindBar"></span></div>
+                </div>
+
+                <div class="panel metric">
+                    <span class="metric-label">POWER FEED</span>
+                    <strong><span id="powerVal">4800</span> W</strong>
+                </div>
+
+                <div class="panel">
+                    <div class="metric-label mb-2">COGNITIVE LOG</div>
+                    <div id="irisLog" class="live-log font-mono text-xs text-cyan-400 h-32 overflow-y-auto"></div>
+                </div>
+
+            </div>
+
         </div>
+    </div>
+
+    <!-- AI GRAPH — FULL WIDTH BELOW BOTH COLUMNS -->
+    <div id="aiTraitFull" class="panel mt-10 hidden">
+        <h2 id="traitLabel" class="panel-title"></h2>
+        <svg class="trait-graph" viewBox="0 0 1200 240" preserveAspectRatio="none">
+            <path id="traitPath"></path>
+        </svg>
     </div>
 
 </section>

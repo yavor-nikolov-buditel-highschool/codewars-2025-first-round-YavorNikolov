@@ -8,15 +8,10 @@ export function initIrisGraph(path) {
             const x = (i / 120) * 1200;
             const y =
                 120 +
-                Math.sin(i * 0.15 + t) * 60 +
-                Math.sin(i * 0.03 + t * 2) * 40;
+                Math.sin(i * 0.15 + t) * 70 +
+                Math.sin(i * 0.04 + t * 2) * 50;
 
-            if (i === 0) {
-                // Start path EXACTLY at first computed point
-                d = `M ${x} ${y}`;
-            } else {
-                d += ` L ${x} ${y}`;
-            }
+            d += i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`;
         }
 
         path.setAttribute("d", d);

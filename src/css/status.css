@@ -365,15 +365,33 @@ body {
     height: 460px;
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* keep layout clean */
 }
 /* Radar content should scroll internally if needed */
 .radar-layout {
     flex: 1;
-    overflow: hidden;
     align-items: flex-start;
 }
+/* LEGEND PANEL */
 .radar-legend {
-    max-height: 100%;
-    overflow-y: auto;
-    padding-right: 6px;
+    width: 260px;
+    font-size: .7rem;
+    color: #cbd5f5;
+
+    padding-left: 0.75rem;   /* FIX: prevents left clipping */
+    padding-right: 0.25rem;  /* slight balance */
+
+    overflow: visible;       /* FIX: no scrolling, no clipping */
+}
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 4px;
+    box-shadow: 0 0 8px currentColor;
+    flex-shrink: 0;          /* FIX: stops left squeeze */
+}
+
+.legend-item {
+    padding-left: 2px;
 }

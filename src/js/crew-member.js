@@ -1,7 +1,6 @@
 import { CREW } from "./crew-data.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-
     const id = new URLSearchParams(location.search).get("id");
     const m = CREW[id];
     if (!m) return;
@@ -9,68 +8,73 @@ document.addEventListener("DOMContentLoaded", () => {
     memberTitle.textContent = m.title;
     portrait.src = m.image;
     story.innerHTML = m.story;
-    traitLabel.textContent = m.trait.label;
+
+    /* =========================
+       HUMAN VS AI TOGGLING
+    ========================== */
+    const humanMetrics = document.getElementById("humanMetrics");
+    const aiSystems = document.getElementById("aiSystems");
+    const aiTrait = document.getElementById("aiTraitFull");
+    const humanTrait = document.getElementById("humanTrait");
+
+    if (m.type === "ai") {
+        humanMetrics.remove();
+        aiSystems.classList.remove("hidden");
+        aiTrait.classList.remove("hidden");
+    } else {
+        humanTrait.classList.remove("hidden");
+    }
 
     /* =========================
        HEART — HUMANS ONLY
     ========================== */
-    const heartMetric = document.querySelector(".metric");
-
     if (m.type === "human") {
         let bpm = m.heart[0];
-
-        function pulse() {
+        setInterval(() => {
+            bpm = Math.floor(
+                m.heart[0] + Math.random() * (m.heart[1] - m.heart[0])
+            );
+            heartRate.textContent = bpm;
             heartIcon.animate(
                 [
                     { transform: "scale(1)" },
                     { transform: "scale(1.4)" },
                     { transform: "scale(1)" }
                 ],
-                { duration: 400, easing: "ease-out" }
+                { duration: 400 }
             );
-        }
-
-        setInterval(() => {
-            bpm = Math.floor(
-                m.heart[0] + Math.random() * (m.heart[1] - m.heart[0])
-            );
-            heartRate.textContent = bpm;
-            pulse();
         }, 900);
-
-    } else {
-        heartMetric.remove();
     }
 
     /* =========================
-       BARS
+       HUMAN BARS
     ========================== */
-    function animateBar(el, min, max, volatility = 5) {
+    function animateBar(el, min, max, vol = 5) {
         let v = (min + max) / 2;
         setInterval(() => {
-            v += (Math.random() - 0.5) * volatility;
+            v += (Math.random() - 0.5) * vol;
             v = Math.max(min, Math.min(max, v));
             el.style.width = v + "%";
         }, 1200);
     }
 
-    if (m.battery) animateBar(batteryBar, ...m.battery, 1);
-    if (m.oxygen) animateBar(oxygenBar, ...m.oxygen, 3);
-    if (m.pressure) animateBar(pressureBar, ...m.pressure, 2);
-
-    if (m.type === "ai") {
-        oxygenBar.parentElement.remove();
-        pressureBar.parentElement.remove();
+    if (m.type === "human") {
+        animateBar(batteryBar, ...m.battery, 1);
+        animateBar(oxygenBar, ...m.oxygen, 3);
+        animateBar(pressureBar, ...m.pressure, 2);
     }
 
     /* =========================
-       GRAPH ROUTING
+       GRAPHS
     ========================== */
     if (m.type === "ai") {
+        traitLabel.textContent = m.trait.label;
         import("./iris-graph.js").then(mod => mod.initIrisGraph(traitPath));
+        import("./iris-systems.js").then(mod => mod.initIrisSystems());
     } else {
+        humanTraitLabel.textContent = m.trait.label;
         import("./human-graph.js").then(mod =>
-            mod.initHumanGraph(traitPath, m.trait)
+            mod.initHumanGraph(humanTraitPath, m.trait)
         );
     }
 });

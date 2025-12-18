@@ -181,3 +181,8 @@ if (log) {
 
     setInterval(addLog, 1600);
 }
+document.querySelectorAll(".sys-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+        btn.classList.toggle("on");
+    });
+});

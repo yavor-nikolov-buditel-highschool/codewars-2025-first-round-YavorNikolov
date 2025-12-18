@@ -79,3 +79,44 @@
     filter: drop-shadow(0 0 16px rgba(34,211,238,.9));
 }
 
+/* =========================
+   IRIS SYSTEMS
+========================= */
+
+#irisLog p {
+    opacity: .8;
+    line-height: 1.6;
+}
+
+#irisLog p:nth-child(odd) {
+    opacity: .5;
+}
+
+#aiSystems .bar span {
+    background: linear-gradient(90deg, #22d3ee, #a78bfa);
+    box-shadow: 0 0 14px rgba(139,92,246,.8);
+}
+/* ================================
+   HUMAN BLOOD PRESSURE — MORE MOTION
+   ================================ */
+
+
+/* HUMAN BLOOD PRESSURE — LIGHT PULSE ONLY */
+#humanMetrics .bar.pressure span {
+    animation: pressureGlow 1.4s ease-in-out infinite;
+}
+
+@keyframes pressureGlow {
+    0% {
+        filter: brightness(0.95);
+        box-shadow: 0 0 10px rgba(244,114,182,0.35);
+    }
+    50% {
+        filter: brightness(1.25);
+        box-shadow: 0 0 22px rgba(244,114,182,0.7);
+    }
+    100% {
+        filter: brightness(0.95);
+        box-shadow: 0 0 10px rgba(244,114,182,0.35);
+    }
+}

@@ -26,18 +26,24 @@ for (let i = 0; i < BAR_COUNT; i++) {
 }
 
 function generateSignal() {
-    let d = "M 0 100";
+    let d = "";
+
     for (let i = 0; i <= 80; i++) {
         const x = (i / 80) * 1000;
-        const y = 100 + Math.sin(i * 0.35 + Date.now() * 0.002) * 45;
-        d += ` L ${x} ${y}`;
+        const y =
+            100 +
+            Math.sin(i * 0.35 + Date.now() * 0.002) * 45;
+
+        d += i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`;
     }
+
     signalPath.setAttribute("d", d);
 
-    document.querySelectorAll(".bar").forEach(bar => {
+    document.querySelectorAll(".full-bars .bar").forEach(bar => {
         bar.style.height = `${40 + Math.random() * 180}px`;
     });
 }
+
 
 setInterval(generateSignal, 120);
 
@@ -69,14 +75,18 @@ const velocityPath = document.getElementById("velocityPath");
 let t = 0;
 
 function updateVelocity() {
-    let d = "M 0 150";
+    let d = "";
+
     for (let i = 0; i <= 120; i++) {
         const x = (i / 120) * 1200;
         const y = 150 + Math.sin(t + i * 0.25) * 70;
-        d += ` L ${x} ${y}`;
+
+        d += i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`;
     }
+
     velocityPath.setAttribute("d", d);
     t += 0.06;
+
     requestAnimationFrame(updateVelocity);
 }
 
